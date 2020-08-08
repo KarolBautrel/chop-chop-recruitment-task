@@ -1,0 +1,12 @@
+.app-layout {
+  display: grid;
+  grid-template-rows: 80px 1fr;
+
+  &-header {
+    background-color: red;
+  }
+
+  &-body {
+    background-color: blue;
+  }
+}
