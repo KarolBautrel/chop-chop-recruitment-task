@@ -1,6 +1,7 @@
 import {
   GET_POST_LIST,
   SET_POST_LIST,
+  SET_POST_LIST_SUCCESS,
   SET_POST_LIST_FAILED,
 } from 'actions/PostListActions';
 
@@ -20,8 +21,13 @@ export default function (state = initialState, action) {
 
     case SET_POST_LIST:
       return {
-        ...initialState,
-        postListData: action.payload,
+        ...state,
+        postListData: action.postListData,
+      };
+
+    case SET_POST_LIST_SUCCESS:
+      return {
+        ...state,
         fetchingPostList: false,
       };
 

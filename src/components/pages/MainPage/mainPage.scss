@@ -1,0 +1,25 @@
+.post-list {
+  &__grid {
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    grid-column-gap: 20px;
+  }
+}
+
+.post {
+  border: 1px solid red;
+  margin: 8px 0;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__image {
+    max-width: 85px;
+    max-height: 85px;
+  }
+}
+
+select {
+  display: block;
+}
