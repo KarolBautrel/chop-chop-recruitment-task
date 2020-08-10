@@ -8,15 +8,22 @@
 
 .post {
   border: 1px solid red;
-  margin: 8px 0;
-  padding: 8px 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 
-  &__image {
-    max-width: 85px;
-    max-height: 85px;
+  &__row {
+    margin: 8px 0;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-image {
+      max-width: 85px;
+      max-height: 85px;
+    }
+
+    &-description {
+      padding: 8px;
+    }
   }
 }
 

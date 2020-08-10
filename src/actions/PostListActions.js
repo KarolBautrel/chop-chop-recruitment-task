@@ -2,11 +2,13 @@ export const GET_POST_LIST = 'GET_POST_LIST';
 export const SET_POST_LIST = 'SET_POST_LIST';
 export const SET_POST_LIST_SUCCESS = 'SET_POST_LIST_SUCCESS';
 export const SET_POST_LIST_FAILED = 'SET_POST_LIST_FAILED';
-export const DISPATCH_SIGN_IN = 'DISPATCH_SIGN_IN';
-export const DISPATCH_SIGN_IN_SUCCESS = 'DISPATCH_SIGN_IN_SUCCESS';
-export const DISPATCH_SIGN_IN_FAILED = 'DISPATCH_SIGN_IN_FAILED';
-export const DISPATCH_LOGOUT = 'DISPATCH_LOGOUT';
-export const DISPATCH_LOGOUT_FAILED = 'DISPATCH_LOGOUT_FAILED';
+
+export const TOGGLE_OPEN_MODAL = 'TOGGLE_OPEN_MODAL';
+export const TOGGLE_CLOSE_MODAL = 'TOGGLE_CLOSE_MODAL';
+export const SET_AUTHOR_DATA = 'SET_AUTHOR_DATA';
+
+export const TOGGLE_OPEN_DESCRIPTION = 'TOGGLE_OPEN_DESCRIPTION';
+export const TOGGLE_CLOSE_DESCRIPTION = 'TOGGLE_CLOSE_DESCRIPTION';
 
 export const getPostList = () => ({
   type: GET_POST_LIST,
@@ -26,27 +28,25 @@ export const setPostListFailed = (err) => ({
   err,
 });
 
-export const dispatchSignIn = (user, push) => ({
-  type: DISPATCH_SIGN_IN,
-  user,
-  push,
+export const toggleOpenModal = (authorId) => ({
+  type: TOGGLE_OPEN_MODAL,
+  authorId,
 });
 
-export const dispatchSignInSuccess = () => ({
-  type: DISPATCH_SIGN_IN_SUCCESS,
+export const toggleCloseModal = () => ({
+  type: TOGGLE_CLOSE_MODAL,
 });
 
-export const dispatchSignInFailed = (err) => ({
-  type: DISPATCH_SIGN_IN_FAILED,
-  err,
+export const setAuthorData = (authorData) => ({
+  type: SET_AUTHOR_DATA,
+  authorData,
 });
 
-export const dispatchLogout = (push) => ({
-  type: DISPATCH_LOGOUT,
-  push,
+export const toggleOpenDescription = (postId) => ({
+  type: TOGGLE_OPEN_DESCRIPTION,
+  postId,
 });
 
-export const dispatchLogoutFailed = (err) => ({
-  type: DISPATCH_LOGOUT_FAILED,
-  err,
+export const toggleCloseDescription = () => ({
+  type: TOGGLE_CLOSE_DESCRIPTION,
 });

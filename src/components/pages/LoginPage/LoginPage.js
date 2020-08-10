@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { dispatchSignIn } from 'actions/PostListActions';
+import { dispatchSignIn } from 'actions/AuthActions';
 import { Redirect } from 'react-router-dom';
 
 const LoginPageComponent = (props) => {
@@ -28,9 +28,9 @@ const LoginPageComponent = (props) => {
 
   console.log(isUserLoggedIn, 'qweqw');
 
-  if (isUserLoggedIn) {
-    return <Redirect to='/posts' />;
-  }
+  // if (isUserLoggedIn) {
+  //   return <Redirect to='/posts' />;
+  // }
 
   return (
     <div>

@@ -2,7 +2,7 @@ import {
   DISPATCH_LOGOUT,
   DISPATCH_SIGN_IN,
   DISPATCH_SIGN_IN_SUCCESS,
-} from 'actions/PostListActions';
+} from 'actions/AuthActions';
 
 const initialState = {
   isUserLoggedIn: false,

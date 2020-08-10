@@ -8,7 +8,7 @@ import {
   dispatchSignInSuccess,
   dispatchLogoutFailed,
   dispatchSignInFailed,
-} from 'actions/PostListActions';
+} from 'actions/AuthActions';
 
 export function* signInSaga({ user, push }) {
   try {

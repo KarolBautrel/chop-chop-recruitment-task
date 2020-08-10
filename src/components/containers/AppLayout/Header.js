@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { dispatchLogout } from 'actions/PostListActions';
+import { dispatchLogout } from 'actions/AuthActions';
 
 export const HeaderComponent = (props) => {
   const {
