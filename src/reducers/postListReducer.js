@@ -7,7 +7,10 @@ import {
   TOGGLE_CLOSE_MODAL,
   SET_AUTHOR_DATA,
   TOGGLE_OPEN_DESCRIPTION,
-  TOGGLE_CLOSE_DESCRIPTION,
+  GET_POST_DETAILS,
+  SET_POST_DETAILS,
+  SET_POST_DETAILS_FAILED,
+  SET_POST_ID_TO_FETCH_DETAILS,
 } from 'actions/PostListActions';
 
 const initialState = {
@@ -18,6 +21,10 @@ const initialState = {
   activeAuthorId: null,
   authorData: {},
   activePostId: null,
+  postDetailsLoading: false,
+  postDetailsLoadingFailed: false,
+  postDetailsData: {},
+  detailedPostId: null,
 };
 
 export default function (state = initialState, action) {
@@ -31,6 +38,7 @@ export default function (state = initialState, action) {
     case SET_POST_LIST:
       return {
         ...state,
+        fetchingPostList: false,
         postListData: action.postListData,
       };
 
@@ -71,6 +79,31 @@ export default function (state = initialState, action) {
       return {
         ...state,
         activePostId: action.postId,
+      };
+
+    case GET_POST_DETAILS:
+      return {
+        ...state,
+        postDetailsLoading: true,
+      };
+
+    case SET_POST_DETAILS:
+      return {
+        ...state,
+        postDetailsData: action.postDetails,
+      };
+
+    case SET_POST_DETAILS_FAILED:
+      return {
+        ...state,
+        postDetailsLoading: false,
+        postDetailsLoadingFailed: true,
+      };
+
+    case SET_POST_ID_TO_FETCH_DETAILS:
+      return {
+        ...state,
+        detailedPostId: action.postId,
       };
 
     default:

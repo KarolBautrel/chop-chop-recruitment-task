@@ -12,7 +12,7 @@ export const HeaderComponent = (props) => {
 
   return (
     <nav className='app-layout-header nav-wrapper blue'>
-      <Link to='#!' className=''>
+      <Link to='/posts' className=''>
         Logo
       </Link>
       <span className='app-layout-header__buttons'>

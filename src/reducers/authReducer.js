@@ -5,6 +5,8 @@ import {
 } from 'actions/AuthActions';
 
 const initialState = {
+  signingIn: false,
+  signingInFailed: false,
   isUserLoggedIn: false,
 };
 
@@ -12,19 +14,21 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case DISPATCH_SIGN_IN:
       return {
-        ...initialState,
-        user: action.payload,
+        ...state,
+        signingIn: true,
       };
 
     case DISPATCH_SIGN_IN_SUCCESS:
       return {
-        ...initialState,
+        ...state,
         isUserLoggedIn: true,
+        signingIn: false,
       };
 
     case DISPATCH_LOGOUT:
       return {
         ...initialState,
+        signingInFailed: true,
       };
 
     default:

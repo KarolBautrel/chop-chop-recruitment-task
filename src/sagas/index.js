@@ -3,6 +3,7 @@ import { watchForSignInSaga, watchForLogoutSaga } from './authSagas';
 import {
   watchForFetchPostListData,
   watchForToggleOpenModalSaga,
+  watchForGetPostDetailsSaga,
 } from './postListSagas';
 
 export default function* rootSaga() {
@@ -11,5 +12,6 @@ export default function* rootSaga() {
     watchForSignInSaga(),
     watchForLogoutSaga(),
     watchForToggleOpenModalSaga(),
+    watchForGetPostDetailsSaga(),
   ]);
 }

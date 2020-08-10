@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { LoginPage } from './LoginPage';
 
-const loginPagePath = '/';
+const loginPagePath = '/login';
 
 export const LoginPageRoute = () => {
   return (

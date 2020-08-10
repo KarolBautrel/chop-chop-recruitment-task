@@ -5,6 +5,10 @@ import { GatewayPage } from './GatewayPage';
 
 export const gatewayPagePath = '/gateway';
 
-export function GatewayPageRoute() {
-  return <Route path={gatewayPagePath} component={GatewayPage} exact />;
-}
+export const GatewayPageRoute = () => {
+  return (
+    <Route path={gatewayPagePath} exact>
+      <GatewayPage />
+    </Route>
+  );
+};

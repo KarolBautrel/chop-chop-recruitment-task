@@ -8,6 +8,11 @@ import {
   TOGGLE_OPEN_MODAL,
   setAuthorData,
 } from 'actions/PostListActions';
+import {
+  GET_POST_DETAILS,
+  setPostDetailsFailed,
+  setPostDetails,
+} from '../actions/PostListActions';
 
 export function* fetchPostListData() {
   try {
@@ -29,6 +34,20 @@ export function* toggleOpenModalSaga({ authorId }) {
   } catch (err) {
     console.log(err);
   }
+}
+
+export function* getPostDetailsSaga({ postId }) {
+  try {
+    const { data } = yield call(httpGet, `posts/${postId}`);
+
+    yield put(setPostDetails(data));
+  } catch (err) {
+    yield put(setPostDetailsFailed(err));
+  }
+}
+
+export function* watchForGetPostDetailsSaga() {
+  yield takeEvery(GET_POST_DETAILS, getPostDetailsSaga);
 }
 
 export function* watchForToggleOpenModalSaga() {

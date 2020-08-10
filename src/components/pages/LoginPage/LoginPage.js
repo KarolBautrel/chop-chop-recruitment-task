@@ -9,7 +9,7 @@ const LoginPageComponent = (props) => {
     history: { push },
   } = props;
 
-  const { isUserLoggedIn } = useSelector((state) => state.auth);
+  const { isUserLoggedIn, signingIn } = useSelector((state) => state.auth);
 
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
@@ -26,11 +26,9 @@ const LoginPageComponent = (props) => {
     dispatch(dispatchSignIn(user, push));
   };
 
-  console.log(isUserLoggedIn, 'qweqw');
-
-  // if (isUserLoggedIn) {
-  //   return <Redirect to='/posts' />;
-  // }
+  if (isUserLoggedIn) {
+    return <Redirect to='/gateway' />;
+  }
 
   return (
     <div>

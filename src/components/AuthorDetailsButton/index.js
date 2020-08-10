@@ -1,0 +1,1 @@
+export { AuthorDetailsButton } from './AuthorDetailsButton';

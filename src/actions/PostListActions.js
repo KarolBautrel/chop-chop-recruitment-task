@@ -10,6 +10,11 @@ export const SET_AUTHOR_DATA = 'SET_AUTHOR_DATA';
 export const TOGGLE_OPEN_DESCRIPTION = 'TOGGLE_OPEN_DESCRIPTION';
 export const TOGGLE_CLOSE_DESCRIPTION = 'TOGGLE_CLOSE_DESCRIPTION';
 
+export const GET_POST_DETAILS = 'GET_POST_DETAILS';
+export const SET_POST_DETAILS = 'SET_POST_DETAILS';
+export const SET_POST_DETAILS_FAILED = 'SET_POST_DETAILS_FAILED';
+export const SET_POST_ID_TO_FETCH_DETAILS = 'SET_POST_ID_TO_FETCH_DETAILS';
+
 export const getPostList = () => ({
   type: GET_POST_LIST,
 });
@@ -49,4 +54,24 @@ export const toggleOpenDescription = (postId) => ({
 
 export const toggleCloseDescription = () => ({
   type: TOGGLE_CLOSE_DESCRIPTION,
+});
+
+export const setPostIdToFetchDetails = (postId) => ({
+  type: SET_POST_ID_TO_FETCH_DETAILS,
+  postId,
+});
+
+export const getPostDetails = (postId) => ({
+  type: GET_POST_DETAILS,
+  postId,
+});
+
+export const setPostDetails = (postDetails) => ({
+  type: SET_POST_DETAILS,
+  postDetails,
+});
+
+export const setPostDetailsFailed = (err) => ({
+  type: SET_POST_DETAILS_FAILED,
+  err,
 });

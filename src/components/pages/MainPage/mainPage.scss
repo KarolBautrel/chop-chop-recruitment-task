@@ -1,5 +1,5 @@
 .post-list {
-  &__grid {
+  &__grid-view {
     display: grid;
     grid-template-columns: 200px 200px 200px;
     grid-column-gap: 20px;
@@ -23,6 +23,23 @@
 
     &-description {
       padding: 8px;
+    }
+  }
+
+  &-grid-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6px;
+    cursor: pointer;
+
+    &__title {
+      height: 25px;
+    }
+
+    &__image {
+      max-width: auto;
+      max-height: 150px;
     }
   }
 }

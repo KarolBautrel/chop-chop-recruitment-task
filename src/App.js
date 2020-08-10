@@ -6,8 +6,10 @@ import { Modal } from 'components/Modal';
 function App() {
   return (
     <BrowserRouter>
-      <Routes />
-      <Modal />
+      <>
+        <Routes />
+        <Modal />
+      </>
     </BrowserRouter>
   );
 }

@@ -3,6 +3,7 @@ import {
   MainPageRoute,
   LoginPageRoute,
   GatewayPageRoute,
+  PostDetailsPage,
 } from 'components/pages';
 
 export const Routes = () => {
@@ -11,6 +12,7 @@ export const Routes = () => {
       <GatewayPageRoute />
       <LoginPageRoute />
       <MainPageRoute />
+      <PostDetailsPage />
     </Fragment>
   );
 };

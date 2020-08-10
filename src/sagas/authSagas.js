@@ -1,4 +1,4 @@
-import { put, takeEvery, call } from 'redux-saga/effects';
+import { put, takeEvery, call, delay } from 'redux-saga/effects';
 import { httpPost } from 'services/APICallService';
 import { removeAuthToken } from 'services/sessionServices';
 
@@ -22,11 +22,9 @@ export function* signInSaga({ user, push }) {
       data: { token },
     } = yield call(httpPost, apiPath, config);
 
-    yield put(dispatchSignInSuccess());
-
     sessionStorage.setItem('token', token);
 
-    push('/gateway');
+    yield put(dispatchSignInSuccess());
   } catch (err) {
     yield put(dispatchSignInFailed(err));
   }
@@ -35,7 +33,7 @@ export function* signInSaga({ user, push }) {
 export function* logoutSaga({ push }) {
   try {
     yield call(removeAuthToken);
-    yield call(push, '/');
+    yield call(push, '/login');
   } catch (err) {
     yield put(dispatchLogoutFailed(err));
   }
