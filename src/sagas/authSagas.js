@@ -1,5 +1,6 @@
 import { put, takeEvery, call } from 'redux-saga/effects';
 import { httpPost } from 'services/APICallService';
+import { API_PATHS } from 'utils/apiConfig';
 import { removeAuthToken } from 'services/sessionServices';
 import {
   DISPATCH_SIGN_IN,
@@ -12,7 +13,6 @@ import {
 
 export function* signInSaga({ user }) {
   try {
-    const apiPath = '/auth';
     const config = {
       username: user.login,
       password: user.password,
@@ -20,7 +20,7 @@ export function* signInSaga({ user }) {
 
     const {
       data: { token },
-    } = yield call(httpPost, apiPath, config);
+    } = yield call(httpPost, API_PATHS.auth, config);
 
     yield put(setUserToken(token));
 

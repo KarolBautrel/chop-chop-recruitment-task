@@ -1,5 +1,6 @@
 import { put, takeEvery, call, select } from 'redux-saga/effects';
 import { httpGet, httpPost } from 'services/APICallService';
+import { API_PATHS } from 'utils/apiConfig';
 import {
   GET_POST_LIST,
   setPostList,
@@ -20,7 +21,7 @@ const selectUserToken = (state) => state.auth;
 export function* fetchPostListData() {
   const { userToken } = yield select(selectUserToken);
   try {
-    const postListData = yield call(httpGet, '/posts', userToken);
+    const postListData = yield call(httpGet, API_PATHS.posts, userToken);
 
     yield put(setPostList(postListData));
 
@@ -34,7 +35,11 @@ export function* toggleOpenModalSaga({ authorId }) {
   const { userToken } = yield select(selectUserToken);
 
   try {
-    const { data } = yield call(httpGet, `/author/${authorId}`, userToken);
+    const { data } = yield call(
+      httpGet,
+      API_PATHS.author.replace(':id', authorId),
+      userToken
+    );
 
     yield put(setAuthorData(data));
   } catch (err) {
@@ -46,7 +51,11 @@ export function* getPostDetailsSaga({ postId }) {
   const { userToken } = yield select(selectUserToken);
 
   try {
-    const { data } = yield call(httpGet, `/posts/${postId}`, userToken);
+    const { data } = yield call(
+      httpGet,
+      API_PATHS.post.replace(':id', postId),
+      userToken
+    );
 
     yield put(setPostDetails(data));
   } catch (err) {
@@ -63,7 +72,7 @@ export function* sendCommentFormSaga({ formValues, postId }) {
       name: formValues.author,
     };
 
-    yield call(httpPost, '/comments', { ...config }, userToken);
+    yield call(httpPost, API_PATHS.comments, { ...config }, userToken);
     yield put(sendCommentFormSuccess());
   } catch (err) {
     yield put(sendCommentFormFailed(err));
