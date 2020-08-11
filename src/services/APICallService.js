@@ -1,49 +1,30 @@
-// const APICallService = (url, { method, body }) => {
-//   return axios
-//     .request(url, {
-//       username: user.login,
-//       password: user.password,
-//     })
-//     .then((response) => response.data)
-//     .catch((err) => {
-//       throw err;
-//     });
-// };
 import axios from 'axios';
 import { authToken } from 'services/sessionServices';
-// export const callAPI = (url, { method, body }) => {
-//   axios({
-//     url,
-//     method,
-//     data: body,
-//     headers: {
-//       'X-Token': sessionStorage.getItem('token'),
-//     },
-//   }).then((response) => {
-//     return response.data;
-//   });
-// };
 
-// export const httpPost = (url, config = {}) =>
-//   callAPI(url, { ...config, method: HTTP_METHODS.post });
-
-export const httpPost = (apiPath, body) => {
+export const httpPost = (apiPath, body, userToken) => {
   return axios
-    .post(`https://edu-api.chop-chop.org/${apiPath}`, {
-      ...body,
-    })
+    .post(
+      `https://edu-api.chop-chop.org/${apiPath}`,
+      { ...body },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Token': userToken || authToken,
+        },
+      }
+    )
     .then((response) => response.data)
     .catch((err) => {
       throw err;
     });
 };
 
-export const httpGet = (apiPath) => {
+export const httpGet = (apiPath, userToken) => {
   return axios
     .get(`https://edu-api.chop-chop.org/${apiPath}`, {
       headers: {
         'Content-Type': 'application/json',
-        'X-Token': authToken,
+        'X-Token': userToken || authToken,
       },
     })
     .then((response) => response.data)

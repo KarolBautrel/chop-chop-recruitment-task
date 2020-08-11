@@ -9,7 +9,7 @@ const LoginPageComponent = (props) => {
     history: { push },
   } = props;
 
-  const { isUserLoggedIn, signingIn } = useSelector((state) => state.auth);
+  const { isUserLoggedIn } = useSelector((state) => state.auth);
 
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');

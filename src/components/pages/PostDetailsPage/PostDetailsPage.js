@@ -11,17 +11,14 @@ export const PostDetailsPage = () => {
   const { detailedPostId } = useSelector((state) => state.postList);
   const dispatch = useDispatch();
 
-  const postPathURL = window.location.pathname;
-
-  // useEffect(() => {
-  //   detailedPostId
-  //     ? dispatch(getPostDetails(detailedPostId))
-  //     : dispatch(getPostDetails(getPostIdFromUrl(postPathURL)));
-  // }, []);
+  const urlPath = window.location.pathname;
+  const urlPathID = getPostIdFromUrl(urlPath);
 
   useEffect(() => {
-    detailedPostId && dispatch(getPostDetails(detailedPostId));
-  }, [detailedPostId]);
+    detailedPostId
+      ? dispatch(getPostDetails(detailedPostId))
+      : dispatch(getPostDetails(urlPathID));
+  }, [detailedPostId, dispatch, urlPathID]);
 
   return (
     <UserPage>

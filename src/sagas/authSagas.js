@@ -1,10 +1,10 @@
-import { put, takeEvery, call, delay } from 'redux-saga/effects';
+import { put, takeEvery, call } from 'redux-saga/effects';
 import { httpPost } from 'services/APICallService';
 import { removeAuthToken } from 'services/sessionServices';
-
 import {
   DISPATCH_SIGN_IN,
   DISPATCH_LOGOUT,
+  setUserToken,
   dispatchSignInSuccess,
   dispatchLogoutFailed,
   dispatchSignInFailed,
@@ -21,6 +21,8 @@ export function* signInSaga({ user }) {
     const {
       data: { token },
     } = yield call(httpPost, apiPath, config);
+
+    yield put(setUserToken(token));
 
     sessionStorage.setItem('token', token);
 

@@ -15,8 +15,13 @@ export const SET_POST_DETAILS = 'SET_POST_DETAILS';
 export const SET_POST_DETAILS_FAILED = 'SET_POST_DETAILS_FAILED';
 export const SET_POST_ID_TO_FETCH_DETAILS = 'SET_POST_ID_TO_FETCH_DETAILS';
 
-export const getPostList = () => ({
+export const SEND_COMMENT_FORM = 'SEND_COMMENT_FORM';
+export const SEND_COMMENT_FORM_SUCCESS = 'SEND_COMMENT_FORM_SUCCESS';
+export const SEND_COMMENT_FORM_FAILED = 'SEND_COMMENT_FORM_FAILED';
+
+export const getPostList = (userToken) => ({
   type: GET_POST_LIST,
+  userToken,
 });
 
 export const setPostList = (postListData) => ({
@@ -73,5 +78,20 @@ export const setPostDetails = (postDetails) => ({
 
 export const setPostDetailsFailed = (err) => ({
   type: SET_POST_DETAILS_FAILED,
+  err,
+});
+
+export const sendCommentForm = (formValues, postId) => ({
+  type: SEND_COMMENT_FORM,
+  formValues,
+  postId,
+});
+
+export const sendCommentFormSuccess = () => ({
+  type: SEND_COMMENT_FORM_SUCCESS,
+});
+
+export const sendCommentFormFailed = (err) => ({
+  type: SEND_COMMENT_FORM_FAILED,
   err,
 });

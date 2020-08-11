@@ -11,7 +11,7 @@ import * as serviceWorker from './serviceWorker';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(
+export const store = createStore(
   reducers,
   {},
   composeWithDevTools(applyMiddleware(sagaMiddleware))

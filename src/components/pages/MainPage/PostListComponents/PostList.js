@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { isPostListView } from 'services/componentsServices';
@@ -14,28 +14,33 @@ export const PostList = () => {
     postListData,
   } = useSelector((state) => state.postList);
 
+  const { userToken } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPostList());
-  }, []);
+    dispatch(getPostList(userToken));
+  }, [userToken, dispatch]);
 
   return (
-    <div className='post-list'>
-      <select
-        className='post-list__select'
-        defaultValue={postListView}
-        onChange={(e) => setPostListView(e.target.value)}
-      >
-        <option value='list'>List</option>
-        <option value='grid'>Grid</option>
-      </select>
+    <div className='post-list container'>
+      <div className='post-list__select'>
+        <p className='post-list__select-label'>Display style:</p>
+        <select
+          className='post-list__select-input'
+          defaultValue={postListView}
+          onChange={(e) => setPostListView(e.target.value)}
+        >
+          <option value='list'>List</option>
+          <option value='grid'>Grid</option>
+        </select>
+      </div>
 
       {fetchingPostList ? (
         <Loader />
       ) : (
         <div
-          className={classNames('post-list__list-view container', {
+          className={classNames('post-list__list-view', {
             'post-list__grid-view': !isPostListView(postListView),
           })}
         >

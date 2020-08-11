@@ -26,7 +26,7 @@ export const Modal = () => {
       <div className='modal-styles'>
         {authorData ? (
           <div className='modal-author-informations'>
-            <img src={authorData.avatar} />
+            <img src={authorData.avatar} alt={authorData.name} />
             <h3>{authorData.name}</h3>
             <p>Description: {authorData.description}</p>
 

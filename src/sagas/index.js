@@ -4,6 +4,7 @@ import {
   watchForFetchPostListData,
   watchForToggleOpenModalSaga,
   watchForGetPostDetailsSaga,
+  watchForSendCommentFormSaga,
 } from './postListSagas';
 
 export default function* rootSaga() {
@@ -13,5 +14,6 @@ export default function* rootSaga() {
     watchForLogoutSaga(),
     watchForGetPostDetailsSaga(),
     watchForToggleOpenModalSaga(),
+    watchForSendCommentFormSaga(),
   ]);
 }

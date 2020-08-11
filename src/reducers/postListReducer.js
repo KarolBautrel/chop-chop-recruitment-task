@@ -11,6 +11,9 @@ import {
   SET_POST_DETAILS,
   SET_POST_DETAILS_FAILED,
   SET_POST_ID_TO_FETCH_DETAILS,
+  SEND_COMMENT_FORM,
+  SEND_COMMENT_FORM_SUCCESS,
+  SEND_COMMENT_FORM_FAILED,
 } from 'actions/PostListActions';
 
 const initialState = {
@@ -25,6 +28,9 @@ const initialState = {
   postDetailsLoadingFailed: false,
   postDetailsData: {},
   detailedPostId: null,
+  formValues: {},
+  sendingFormComment: false,
+  sendingFormCommentFailed: false,
 };
 
 export default function (state = initialState, action) {
@@ -38,7 +44,6 @@ export default function (state = initialState, action) {
     case SET_POST_LIST:
       return {
         ...state,
-        fetchingPostList: false,
         postListData: action.postListData,
       };
 
@@ -104,6 +109,26 @@ export default function (state = initialState, action) {
       return {
         ...state,
         detailedPostId: action.postId,
+      };
+
+    case SEND_COMMENT_FORM:
+      return {
+        ...state,
+        sendingFormComment: true,
+        formValues: action.formValues,
+      };
+
+    case SEND_COMMENT_FORM_SUCCESS:
+      return {
+        ...state,
+        sendingFormComment: false,
+      };
+
+    case SEND_COMMENT_FORM_FAILED:
+      return {
+        ...state,
+        sendingFormComment: false,
+        sendingFormCommentFailed: true,
       };
 
     default:

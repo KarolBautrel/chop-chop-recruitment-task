@@ -1,13 +1,16 @@
 import {
   DISPATCH_LOGOUT,
+  SET_USER_TOKEN,
   DISPATCH_SIGN_IN,
   DISPATCH_SIGN_IN_SUCCESS,
 } from 'actions/AuthActions';
+import { authToken } from 'services/sessionServices';
 
 const initialState = {
   signingIn: false,
+  userToken: null,
   signingInFailed: false,
-  isUserLoggedIn: false,
+  isUserLoggedIn: authToken ? true : false,
 };
 
 export default function (state = initialState, action) {
@@ -16,6 +19,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         signingIn: true,
+      };
+
+    case SET_USER_TOKEN:
+      return {
+        ...state,
+        userToken: action.userToken,
       };
 
     case DISPATCH_SIGN_IN_SUCCESS:
@@ -29,6 +38,7 @@ export default function (state = initialState, action) {
       return {
         ...initialState,
         signingInFailed: true,
+        isUserLoggedIn: false,
       };
 
     default:
