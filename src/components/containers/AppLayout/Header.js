@@ -16,7 +16,7 @@ export const HeaderComponent = (props) => {
         Logo
       </Link>
       <span className='app-layout-header__buttons'>
-        <Link to='http://google.com'>Post list</Link>
+        <Link to='/posts'>Post list</Link>
         <button
           className='app-layout-header__buttons--logout-btn btn waves-effect waves-light'
           onClick={() => dispatch(dispatchLogout(push))}

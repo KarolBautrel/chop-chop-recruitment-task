@@ -13,10 +13,14 @@ export const PostDetailsPage = () => {
 
   const postPathURL = window.location.pathname;
 
+  // useEffect(() => {
+  //   detailedPostId
+  //     ? dispatch(getPostDetails(detailedPostId))
+  //     : dispatch(getPostDetails(getPostIdFromUrl(postPathURL)));
+  // }, []);
+
   useEffect(() => {
-    detailedPostId
-      ? dispatch(getPostDetails(detailedPostId))
-      : dispatch(getPostDetails(getPostIdFromUrl(postPathURL)));
+    detailedPostId && dispatch(getPostDetails(detailedPostId));
   }, [detailedPostId]);
 
   return (

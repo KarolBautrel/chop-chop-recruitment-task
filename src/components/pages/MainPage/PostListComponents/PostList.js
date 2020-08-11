@@ -11,7 +11,7 @@ export const PostList = () => {
   const {
     fetchingPostList,
     fetchingPostListFailed,
-    postListData: { data: posts },
+    postListData,
   } = useSelector((state) => state.postList);
 
   const dispatch = useDispatch();
@@ -39,8 +39,9 @@ export const PostList = () => {
             'post-list__grid-view': !isPostListView(postListView),
           })}
         >
-          {posts &&
-            posts.map((post) => (
+          {postListData &&
+            postListData.data &&
+            postListData.data.map((post) => (
               <Post
                 key={post.id}
                 postData={post}

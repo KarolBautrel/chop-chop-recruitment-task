@@ -5,5 +5,5 @@ export { UserPage } from './UserPage';
 export {
   PostDetailsPage,
   PostDetailsPageRoute,
-  postPagePath,
+  postDetailsPagePath,
 } from './PostDetailsPage';

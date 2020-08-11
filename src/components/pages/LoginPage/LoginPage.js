@@ -27,7 +27,7 @@ const LoginPageComponent = (props) => {
   };
 
   if (isUserLoggedIn) {
-    return <Redirect to='/gateway' />;
+    return <Redirect to='/posts' />;
   }
 
   return (

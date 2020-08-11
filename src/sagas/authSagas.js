@@ -10,7 +10,7 @@ import {
   dispatchSignInFailed,
 } from 'actions/AuthActions';
 
-export function* signInSaga({ user, push }) {
+export function* signInSaga({ user }) {
   try {
     const apiPath = 'auth';
     const config = {
@@ -33,7 +33,7 @@ export function* signInSaga({ user, push }) {
 export function* logoutSaga({ push }) {
   try {
     yield call(removeAuthToken);
-    yield call(push, '/login');
+    yield call(push, '/');
   } catch (err) {
     yield put(dispatchLogoutFailed(err));
   }

@@ -7,7 +7,7 @@ import {
 } from 'actions/PostListActions';
 import { AuthorDetailsButton } from 'components/AuthorDetailsButton';
 
-import { postPagePath } from 'components/pages/PostDetailsPage';
+import { postDetailsPagePath } from 'components/pages/PostDetailsPage';
 
 export const ListElement = (props) => {
   const { id, title, thumbnail, date, authorId, excerpt, activePostId } = props;
@@ -22,7 +22,7 @@ export const ListElement = (props) => {
           <p>{date}</p>
           <Link
             onClick={() => dispatch(setPostIdToFetchDetails(id))}
-            to={postPagePath.replace(':postId', id)}
+            to={postDetailsPagePath.replace(':postId', id)}
           >
             {title}
           </Link>

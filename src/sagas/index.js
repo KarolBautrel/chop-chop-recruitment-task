@@ -11,7 +11,7 @@ export default function* rootSaga() {
     watchForFetchPostListData(),
     watchForSignInSaga(),
     watchForLogoutSaga(),
-    watchForToggleOpenModalSaga(),
     watchForGetPostDetailsSaga(),
+    watchForToggleOpenModalSaga(),
   ]);
 }
