@@ -11,6 +11,8 @@ import {
   setPostDetailsFailed,
   GET_POST_DETAILS,
   SEND_COMMENT_FORM,
+  sendCommentFormSuccess,
+  sendCommentFormFailed,
 } from 'actions/PostListActions';
 
 const selectUserToken = (state) => state.auth;
@@ -18,7 +20,7 @@ const selectUserToken = (state) => state.auth;
 export function* fetchPostListData() {
   const { userToken } = yield select(selectUserToken);
   try {
-    const postListData = yield call(httpGet, 'posts', userToken);
+    const postListData = yield call(httpGet, '/posts', userToken);
 
     yield put(setPostList(postListData));
 
@@ -32,7 +34,7 @@ export function* toggleOpenModalSaga({ authorId }) {
   const { userToken } = yield select(selectUserToken);
 
   try {
-    const { data } = yield call(httpGet, `author/${authorId}`, userToken);
+    const { data } = yield call(httpGet, `/author/${authorId}`, userToken);
 
     yield put(setAuthorData(data));
   } catch (err) {
@@ -44,7 +46,7 @@ export function* getPostDetailsSaga({ postId }) {
   const { userToken } = yield select(selectUserToken);
 
   try {
-    const { data } = yield call(httpGet, `posts/${postId}`, userToken);
+    const { data } = yield call(httpGet, `/posts/${postId}`, userToken);
 
     yield put(setPostDetails(data));
   } catch (err) {
@@ -53,20 +55,18 @@ export function* getPostDetailsSaga({ postId }) {
 }
 
 export function* sendCommentFormSaga({ formValues, postId }) {
-  yield console.log('sendCommentFormSaga');
-  yield console.log(formValues);
-  yield console.log(postId);
   try {
-    const test = yield call(httpPost, 'comments', {
-      body: {
-        id: postId,
-        comment: formValues.comment,
-        name: formValues.author,
-      },
-    });
-    console.log(test);
+    const { userToken } = yield select(selectUserToken);
+    const config = {
+      id: postId,
+      comment: formValues.comment,
+      name: formValues.author,
+    };
+
+    yield call(httpPost, '/comments', { ...config }, userToken);
+    yield put(sendCommentFormSuccess());
   } catch (err) {
-    console.log(err);
+    yield put(sendCommentFormFailed(err));
   }
 }
 

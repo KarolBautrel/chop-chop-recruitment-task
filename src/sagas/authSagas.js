@@ -12,7 +12,7 @@ import {
 
 export function* signInSaga({ user }) {
   try {
-    const apiPath = 'auth';
+    const apiPath = '/auth';
     const config = {
       username: user.login,
       password: user.password,

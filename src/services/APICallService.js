@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { authToken } from 'services/sessionServices';
+import { apiURL } from 'utils/apiConfig';
 
 export const httpPost = (apiPath, body, userToken) => {
   return axios
     .post(
-      `https://edu-api.chop-chop.org/${apiPath}`,
+      `${apiURL}${apiPath}`,
       { ...body },
       {
         headers: {
@@ -21,7 +22,7 @@ export const httpPost = (apiPath, body, userToken) => {
 
 export const httpGet = (apiPath, userToken) => {
   return axios
-    .get(`https://edu-api.chop-chop.org/${apiPath}`, {
+    .get(`${apiURL}${apiPath}`, {
       headers: {
         'Content-Type': 'application/json',
         'X-Token': userToken || authToken,
