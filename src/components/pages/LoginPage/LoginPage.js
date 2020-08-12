@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { dispatchSignIn } from 'actions/AuthActions';
@@ -64,6 +65,12 @@ const LoginPageComponent = (props) => {
       </form>
     </div>
   );
+};
+
+LoginPageComponent.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export const LoginPage = withRouter(LoginPageComponent);

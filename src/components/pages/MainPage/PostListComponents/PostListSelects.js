@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import {
   setPostListOrder,
@@ -14,6 +15,7 @@ export const PostListSelects = (props) => {
     setListOrder,
     setListOrderType,
   } = props;
+
   const dispatch = useDispatch();
 
   return (
@@ -64,4 +66,13 @@ export const PostListSelects = (props) => {
       </div>
     </div>
   );
+};
+
+PostListSelects.propTypes = {
+  postListView: PropTypes.string.isRequired,
+  listOrder: PropTypes.string.isRequired,
+  orderType: PropTypes.string.isRequired,
+  setPostListView: PropTypes.func.isRequired,
+  setListOrder: PropTypes.func.isRequired,
+  setListOrderType: PropTypes.func.isRequired,
 };

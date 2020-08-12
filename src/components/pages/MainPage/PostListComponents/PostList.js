@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
@@ -13,6 +14,7 @@ export const PostListComponent = (props) => {
   const {
     history: { push },
   } = props;
+
   const dispatch = useDispatch();
   const [postListView, setPostListView] = useState('list');
   const [listOrder, setListOrder] = useState('asc');
@@ -61,6 +63,12 @@ export const PostListComponent = (props) => {
       <Pagination {...postListData.pagination} />
     </div>
   );
+};
+
+PostListComponent.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export const PostList = withRouter(PostListComponent);

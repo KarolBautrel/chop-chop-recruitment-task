@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { sendCommentForm } from 'actions/PostListActions';
 
@@ -67,4 +68,10 @@ export const CommentForm = (props) => {
       <button onClick={() => openCommentForm(!formStatus)}>Close</button>
     </div>
   );
+};
+
+CommentForm.propTypes = {
+  openCommentForm: PropTypes.func.isRequired,
+  formStatus: PropTypes.bool.isRequired,
+  postId: PropTypes.string.isRequired,
 };

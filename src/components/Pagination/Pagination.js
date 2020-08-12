@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import { setActivePage } from 'actions/PostListActions';
@@ -28,4 +29,14 @@ export const Pagination = (props) => {
   getPaginationButtons(page, totalPages);
 
   return <div className='pagination'>{paginationButtons}</div>;
+};
+
+Pagination.propTypes = {
+  page: PropTypes.number,
+  totalPages: PropTypes.number,
+};
+
+Pagination.defaultProps = {
+  page: null,
+  totalPages: null,
 };

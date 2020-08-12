@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { isPostListView } from 'services/componentsServices';
 import { ListElement } from './ListElement';
@@ -17,4 +18,12 @@ export const Post = (props) => {
       )}
     </div>
   );
+};
+
+Post.propTypes = {
+  activePostId: PropTypes.number,
+};
+
+Post.defaultProps = {
+  activePostId: null,
 };

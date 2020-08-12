@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { Route } from 'react-router-dom';
 import {
   MainPageRoute,
   LoginPageRoute,
