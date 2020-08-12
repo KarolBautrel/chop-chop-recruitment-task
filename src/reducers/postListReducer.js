@@ -1,3 +1,4 @@
+import { getCurrentPageNumber } from 'services/componentsServices';
 import {
   GET_POST_LIST,
   SET_POST_LIST,
@@ -14,6 +15,9 @@ import {
   SEND_COMMENT_FORM,
   SEND_COMMENT_FORM_SUCCESS,
   SEND_COMMENT_FORM_FAILED,
+  SET_ACTIVE_PAGE,
+  SET_POST_LIST_ORDER,
+  SET_POST_LIST_ORDER_TYPE,
 } from 'actions/PostListActions';
 
 const initialState = {
@@ -31,13 +35,16 @@ const initialState = {
   formValues: {},
   sendingFormComment: false,
   sendingFormCommentFailed: false,
+  activePage: getCurrentPageNumber(),
+  postListOrder: 'asc',
+  orderType: 'title',
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case GET_POST_LIST:
       return {
-        ...initialState,
+        ...state,
         fetchingPostList: true,
       };
 
@@ -55,7 +62,7 @@ export default function (state = initialState, action) {
 
     case SET_POST_LIST_FAILED:
       return {
-        ...initialState,
+        ...state,
         fetchingPostListFailed: true,
       };
 
@@ -129,6 +136,24 @@ export default function (state = initialState, action) {
         ...state,
         sendingFormComment: false,
         sendingFormCommentFailed: true,
+      };
+
+    case SET_ACTIVE_PAGE:
+      return {
+        ...state,
+        activePage: action.pageNumber,
+      };
+
+    case SET_POST_LIST_ORDER:
+      return {
+        ...state,
+        postListOrder: action.orderType,
+      };
+
+    case SET_POST_LIST_ORDER_TYPE:
+      return {
+        ...state,
+        orderType: action.orderType,
       };
 
     default:

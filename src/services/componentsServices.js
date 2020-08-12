@@ -8,3 +8,10 @@ export const isPostListView = (postListVisibility) => {
     return false;
   }
 };
+
+export const getCurrentPageNumber = () => {
+  const searchParams = new URLSearchParams(window.location.search);
+  const currentPage = parseInt(searchParams.get('page'), 10);
+
+  return currentPage;
+};

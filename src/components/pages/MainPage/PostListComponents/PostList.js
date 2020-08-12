@@ -1,41 +1,43 @@
 import React, { useEffect, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { isPostListView } from 'services/componentsServices';
 import { Loader, LoaderError } from 'components/Loader';
 import { getPostList } from 'actions/PostListActions';
+import { Pagination } from 'components/Pagination';
 import { Post } from './Post';
+import { PostListSelects } from './PostListSelects';
 
-export const PostList = () => {
+export const PostListComponent = (props) => {
+  const {
+    history: { push },
+  } = props;
+  const dispatch = useDispatch();
   const [postListView, setPostListView] = useState('list');
+  const [listOrder, setListOrder] = useState('asc');
+  const [orderType, setListOrderType] = useState('title');
   const {
     fetchingPostList,
     fetchingPostListFailed,
     postListData,
+    activePage,
   } = useSelector((state) => state.postList);
 
-  const { userToken } = useSelector((state) => state.auth);
-
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(getPostList(userToken));
-  }, [userToken, dispatch]);
+    dispatch(getPostList(push));
+  }, [dispatch, activePage, listOrder, orderType]);
 
   return (
     <div className='post-list-container container'>
-      <div className='post-list-container__select'>
-        <p className='post-list-container__select-label'>Display style:</p>
-        <select
-          className='post-list-container__select-input'
-          defaultValue={postListView}
-          onChange={(e) => setPostListView(e.target.value)}
-        >
-          <option value='list'>List</option>
-          <option value='grid'>Grid</option>
-        </select>
-      </div>
-
+      <PostListSelects
+        postListView={postListView}
+        listOrder={listOrder}
+        orderType={orderType}
+        setPostListView={setPostListView}
+        setListOrder={setListOrder}
+        setListOrderType={setListOrderType}
+      />
       {fetchingPostList ? (
         <Loader />
       ) : (
@@ -56,6 +58,9 @@ export const PostList = () => {
         </div>
       )}
       {fetchingPostListFailed && <LoaderError />}
+      <Pagination {...postListData.pagination} />
     </div>
   );
 };
+
+export const PostList = withRouter(PostListComponent);

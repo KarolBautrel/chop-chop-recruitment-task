@@ -1,4 +1,5 @@
 import { put, takeEvery, call, select } from 'redux-saga/effects';
+import buildUrl from 'build-url';
 import { httpGet, httpPost } from 'services/APICallService';
 import { API_PATHS } from 'utils/apiConfig';
 import {
@@ -17,14 +18,28 @@ import {
 } from 'actions/PostListActions';
 
 const selectUserToken = (state) => state.auth;
+const selectPaginationParams = (state) => state.postList;
 
-export function* fetchPostListData() {
+export function* fetchPostListData({ push }) {
   const { userToken } = yield select(selectUserToken);
+  const { activePage, postListOrder, orderType } = yield select(
+    selectPaginationParams
+  );
+
+  const url = buildUrl(API_PATHS.posts, {
+    queryParams: {
+      page: activePage,
+      order: postListOrder,
+      orderBy: orderType,
+    },
+  });
+
   try {
-    const postListData = yield call(httpGet, API_PATHS.posts, userToken);
+    const postListData = yield call(httpGet, url, userToken);
 
     yield put(setPostList(postListData));
 
+    yield call(push, url);
     yield put(setPostListSuccess());
   } catch (err) {
     yield put(setPostListFailed());

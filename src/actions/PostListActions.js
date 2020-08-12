@@ -19,9 +19,13 @@ export const SEND_COMMENT_FORM = 'SEND_COMMENT_FORM';
 export const SEND_COMMENT_FORM_SUCCESS = 'SEND_COMMENT_FORM_SUCCESS';
 export const SEND_COMMENT_FORM_FAILED = 'SEND_COMMENT_FORM_FAILED';
 
-export const getPostList = (userToken) => ({
+export const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE';
+export const SET_POST_LIST_ORDER = 'SET_POST_LIST_ORDER';
+export const SET_POST_LIST_ORDER_TYPE = 'SET_POST_LIST_ORDER_TYPE';
+
+export const getPostList = (push) => ({
   type: GET_POST_LIST,
-  userToken,
+  push,
 });
 
 export const setPostList = (postListData) => ({
@@ -94,4 +98,19 @@ export const sendCommentFormSuccess = () => ({
 export const sendCommentFormFailed = (err) => ({
   type: SEND_COMMENT_FORM_FAILED,
   err,
+});
+
+export const setActivePage = (pageNumber) => ({
+  type: SET_ACTIVE_PAGE,
+  pageNumber,
+});
+
+export const setPostListOrder = (orderType) => ({
+  type: SET_POST_LIST_ORDER,
+  orderType,
+});
+
+export const setPostListOrderType = (orderType) => ({
+  type: SET_POST_LIST_ORDER_TYPE,
+  orderType,
 });
