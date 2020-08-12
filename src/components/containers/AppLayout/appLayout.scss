@@ -1,6 +1,7 @@
 .app-layout {
   display: grid;
   grid-template-rows: 80px 1fr;
+  padding-bottom: 80px;
 
   &-header {
     padding: 0 48px;
@@ -16,8 +17,5 @@
         margin-left: 20px;
       }
     }
-  }
-
-  &-body {
   }
 }

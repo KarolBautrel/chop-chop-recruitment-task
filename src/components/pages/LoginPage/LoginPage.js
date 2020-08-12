@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { dispatchSignIn } from 'actions/AuthActions';
 import { Redirect } from 'react-router-dom';
+import './loginPage.scss';
 
 const LoginPageComponent = (props) => {
   const {
@@ -31,16 +32,25 @@ const LoginPageComponent = (props) => {
   }
 
   return (
-    <div>
-      <form onSubmit={loginUser}>
+    <div class='container login-form-container'>
+      <form onSubmit={loginUser} class='login-form'>
+        <label for='input_login' class='login-form-input'>
+          Login
+        </label>
         <input
+          id='input_login'
           type='text'
           value={login}
           onChange={(event) => setLogin(event.target.value)}
         />
+        <label for='input_password' class='login-form-input'>
+          Password
+        </label>
         <input
+          id='input_password'
           type='password'
           value={password}
+          class='file-field input-field'
           onChange={(event) => setPassword(event.target.value)}
         />
         <button

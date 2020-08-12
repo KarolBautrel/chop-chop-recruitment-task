@@ -23,11 +23,11 @@ export const PostList = () => {
   }, [userToken, dispatch]);
 
   return (
-    <div className='post-list container'>
-      <div className='post-list__select'>
-        <p className='post-list__select-label'>Display style:</p>
+    <div className='post-list-container container'>
+      <div className='post-list-container__select'>
+        <p className='post-list-container__select-label'>Display style:</p>
         <select
-          className='post-list__select-input'
+          className='post-list-container__select-input'
           defaultValue={postListView}
           onChange={(e) => setPostListView(e.target.value)}
         >
@@ -40,8 +40,8 @@ export const PostList = () => {
         <Loader />
       ) : (
         <div
-          className={classNames('post-list__list-view', {
-            'post-list__grid-view': !isPostListView(postListView),
+          className={classNames('post-list-container__list-view', {
+            'post-list-container__grid-view': !isPostListView(postListView),
           })}
         >
           {postListData &&
