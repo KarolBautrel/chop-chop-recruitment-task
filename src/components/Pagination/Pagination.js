@@ -9,7 +9,7 @@ export const Pagination = (props) => {
   const { page, totalPages } = props;
   const paginationButtons = [];
 
-  const getPaginationButtons = (activePage, totalPages) => {
+  const getPaginationButtons = (activePage, totalPages = 10) => {
     for (let i = 1; i <= totalPages; i += 1) {
       paginationButtons.push(
         <button

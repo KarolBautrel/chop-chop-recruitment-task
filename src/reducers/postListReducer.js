@@ -20,6 +20,8 @@ import {
   SET_POST_LIST_ORDER_TYPE,
 } from 'actions/PostListActions';
 
+const activePageNumber = getCurrentPageNumber();
+
 const initialState = {
   postListData: {},
   fetchingPostList: false,
@@ -27,7 +29,6 @@ const initialState = {
   isModalOpen: false,
   activeAuthorId: null,
   authorData: {},
-  activePostId: null,
   postDetailsLoading: false,
   postDetailsLoadingFailed: false,
   postDetailsData: {},
@@ -35,7 +36,7 @@ const initialState = {
   formValues: {},
   sendingFormComment: false,
   sendingFormCommentFailed: false,
-  activePage: getCurrentPageNumber(),
+  activePage: activePageNumber ? activePageNumber : 1,
   postListOrder: 'asc',
   orderType: 'title',
 };
@@ -52,6 +53,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         postListData: action.postListData,
+        fetchingPostListFailed: false,
       };
 
     case SET_POST_LIST_SUCCESS:
@@ -64,6 +66,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         fetchingPostListFailed: true,
+        fetchingPostList: false,
       };
 
     case TOGGLE_OPEN_MODAL:
@@ -85,12 +88,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         authorData: action.authorData,
-      };
-
-    case TOGGLE_OPEN_DESCRIPTION:
-      return {
-        ...state,
-        activePostId: action.postId,
       };
 
     case GET_POST_DETAILS:

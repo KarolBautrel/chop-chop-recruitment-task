@@ -7,9 +7,6 @@ export const TOGGLE_OPEN_MODAL = 'TOGGLE_OPEN_MODAL';
 export const TOGGLE_CLOSE_MODAL = 'TOGGLE_CLOSE_MODAL';
 export const SET_AUTHOR_DATA = 'SET_AUTHOR_DATA';
 
-export const TOGGLE_OPEN_DESCRIPTION = 'TOGGLE_OPEN_DESCRIPTION';
-export const TOGGLE_CLOSE_DESCRIPTION = 'TOGGLE_CLOSE_DESCRIPTION';
-
 export const GET_POST_DETAILS = 'GET_POST_DETAILS';
 export const SET_POST_DETAILS = 'SET_POST_DETAILS';
 export const SET_POST_DETAILS_FAILED = 'SET_POST_DETAILS_FAILED';
@@ -38,7 +35,7 @@ export const setPostListSuccess = () => ({
 });
 
 export const setPostListFailed = (err) => ({
-  type: SET_POST_LIST,
+  type: SET_POST_LIST_FAILED,
   err,
 });
 
@@ -54,15 +51,6 @@ export const toggleCloseModal = () => ({
 export const setAuthorData = (authorData) => ({
   type: SET_AUTHOR_DATA,
   authorData,
-});
-
-export const toggleOpenDescription = (postId) => ({
-  type: TOGGLE_OPEN_DESCRIPTION,
-  postId,
-});
-
-export const toggleCloseDescription = () => ({
-  type: TOGGLE_CLOSE_DESCRIPTION,
 });
 
 export const setPostIdToFetchDetails = (postId) => ({

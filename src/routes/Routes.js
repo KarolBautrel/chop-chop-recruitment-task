@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react';
+import { Route } from 'react-router-dom';
 import {
   MainPageRoute,
   LoginPageRoute,
   GatewayPageRoute,
   PostDetailsPageRoute,
+  NotFoundPageRoute,
 } from 'components/pages';
 
 export const Routes = () => {
@@ -13,6 +15,7 @@ export const Routes = () => {
       <GatewayPageRoute />
       <MainPageRoute />
       <PostDetailsPageRoute />
+      <NotFoundPageRoute />
     </Fragment>
   );
 };

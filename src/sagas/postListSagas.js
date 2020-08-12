@@ -39,8 +39,12 @@ export function* fetchPostListData({ push }) {
 
     yield put(setPostList(postListData));
 
-    yield call(push, url);
-    yield put(setPostListSuccess());
+    if (typeof postListData === 'string') {
+      yield put(setPostListFailed());
+    } else {
+      yield call(push, url);
+      yield put(setPostListSuccess());
+    }
   } catch (err) {
     yield put(setPostListFailed());
   }

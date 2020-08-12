@@ -10,6 +10,7 @@ import { AuthorDetailsButton } from 'components/AuthorDetailsButton';
 import { postDetailsPagePath } from 'components/pages/PostDetailsPage';
 
 export const ListElement = (props) => {
+  const [toggleDescription, setToggleDescription] = React.useState(false);
   const { id, title, thumbnail, date, authorId, excerpt, activePostId } = props;
 
   const dispatch = useDispatch();
@@ -29,12 +30,14 @@ export const ListElement = (props) => {
         </span>
         <span className='col s2'>
           <AuthorDetailsButton authorId={authorId} />
-          <button onClick={() => dispatch(toggleOpenDescription(id))}>E</button>
+          <button onClick={() => setToggleDescription(!toggleDescription)}>
+            E
+          </button>
         </span>
       </div>
-      {activePostId === id ? (
+      {toggleDescription && (
         <div className='post__row-description'>{excerpt}</div>
-      ) : null}
+      )}
     </>
   );
 };

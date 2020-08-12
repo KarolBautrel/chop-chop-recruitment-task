@@ -7,3 +7,4 @@ export {
   PostDetailsPageRoute,
   postDetailsPagePath,
 } from './PostDetailsPage';
+export { NotFoundPage, NotFoundPageRoute } from './NotFoundPage';
