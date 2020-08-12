@@ -10,7 +10,7 @@ export const Pagination = (props) => {
   const { page, totalPages } = props;
   const paginationButtons = [];
 
-  const getPaginationButtons = (activePage, totalPages = 10) => {
+  const getPaginationButtons = (activePage, totalPages) => {
     for (let i = 1; i <= totalPages; i += 1) {
       paginationButtons.push(
         <button
@@ -38,5 +38,5 @@ Pagination.propTypes = {
 
 Pagination.defaultProps = {
   page: null,
-  totalPages: null,
+  totalPages: 10,
 };
