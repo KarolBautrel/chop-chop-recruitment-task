@@ -29,7 +29,7 @@ src/
 │   ├── Modal
 │   ├── Pagination
 │   ├── containers
-|   └──├── AppLayout
+    └──├── AppLayout
 │   ├── pages
 └── └──├── GatewayPage
     └──├── LoginPage
@@ -37,6 +37,12 @@ src/
     └──├── NotFoundPage
     └──├── PostDetailsPage
     └──├── UserPage
+├── reducers
+├── routes
+├── sagas
+├── services
+├── utils
+└── App.js
 ```
 
 ## TODO
